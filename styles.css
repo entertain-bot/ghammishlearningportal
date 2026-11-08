@@ -1,0 +1,10 @@
+body {
+	background-color: black;
+}
+header {
+	text-align: center;
+	color: whitesmoke;
+	background-color: green;
+	padding: 50px 20px;
+  position: relative;
+}
