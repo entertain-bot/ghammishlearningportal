@@ -1,0 +1,29 @@
+{
+  "name": "GHAMMISH Learning Resource Centre",
+  "short_name": "GHAMMISH",
+  "description": "Learning resources, educational videos and school information for Ghana Muslim Mission SHS.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#06130c",
+  "theme_color": "#06130c",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
