@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Sign in | GHAMMISH</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="auth.css" />
+		<link rel="manifest" href="manifest.webmanifest" />
+		<meta name="theme-color" content="#06130c" />
+		<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+		<script src="app.js" defer></script>
+	</head>
+
+	<body>
+		<!-- ===== HEADER / NAVIGATION ===== -->
+		<header class="site-header">
+			<a class="brand" href="index.html">
+				<img src="school-logo.jpg" alt="Ghana Muslim Mission SHS crest" />
+				<span>
+					<strong>GHAMMISH</strong>
+					<small>LEARNING RESOURCE CENTRE</small>
+				</span>
+			</a>
+
+			<button
+				class="menu-toggle"
+				onclick="document.querySelector('.nav').classList.toggle('open')"
+			>
+				☰
+			</button>
+
+			<nav class="nav">
+				<a href="index.html">Home</a>
+				<a href="resources.html">Learning Materials</a>
+				<a href="videos.html">Educational Videos</a>
+				<a href="about.html">About School</a>
+			</nav>
+		</header>
+
+		<!-- ===== PAGE CONTENT ===== -->
+		<main>
+			<div class="page-banner">
+				<div class="wrap">
+					<h1>Sign in</h1>
+					<p>Sign in so GHAMMISH remembers you on this device.</p>
+				</div>
+			</div>
+
+			<section class="wrap auth-wrap">
+				<div class="auth-card" id="auth-card">
+					<!-- Shown when the student is NOT signed in -->
+					<div id="auth-forms">
+						<h2>Welcome back</h2>
+						<p class="muted">Sign in so GHAMMISH remembers you on this device.</p>
+
+						<form id="form-signin">
+							<label for="signin-email">Email</label>
+							<input id="signin-email" type="email" autocomplete="email" required />
+
+							<label for="signin-password">Password</label>
+							<input id="signin-password" type="password" autocomplete="current-password" required />
+
+							<button class="auth-btn" type="submit">Sign in</button>
+							<button class="auth-link" type="button" id="btn-reset">Forgot password?</button>
+						</form>
+
+						<p class="auth-divider">or</p>
+						<button class="auth-btn auth-btn-light" type="button" id="btn-google">Continue with Google</button>
+
+						<p class="auth-switch">New to GHAMMISH? <a href="signup.html">Create an account</a></p>
+					</div>
+
+					<!-- Shown when the student IS signed in -->
+					<div id="auth-signedin" hidden>
+						<h2>You are signed in</h2>
+						<p class="muted">Signed in as <strong id="signedin-name"></strong>.</p>
+						<a class="auth-btn" href="index.html" style="text-align: center; text-decoration: none">Go to home page</a>
+						<button class="auth-btn auth-btn-light" type="button" id="btn-signout">Sign out</button>
+					</div>
+
+					<p class="auth-message info" id="auth-message" hidden></p>
+
+					<p class="auth-note">
+						Your name and email are used only to sign you in to this website.
+						Passwords are handled securely by Google Firebase.
+					</p>
+				</div>
+			</section>
+		</main>
+
+		<!-- ===== FOOTER ===== -->
+		<footer class="site-footer">
+			<div class="footer-inner">
+				<div>
+					<h3>GHAMMISH</h3>
+					<p>Knowledge and Humility</p>
+				</div>
+
+				<div>
+					<a href="index.html">Home</a>
+					<a href="resources.html">Learning Resources</a>
+					<a href="videos.html">Educational Videos</a>
+					<a href="about.html">About School</a>
+				</div>
+
+				<p>Ghana Muslim Mission Senior High School</p>
+			</div>
+
+			<div class="copyright">© 2026 GHAMMISH Learning Resource Centre.</div>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,153 @@
+/* =====================================================================
+   GHAMMISH admin panel styles (only used when the admin is signed in)
+   ===================================================================== */
+
+/* ---------- Panel ---------- */
+.admin-panel {
+  margin-bottom: 24px;
+  padding: 20px;
+  border: 2px dashed #c49a52;
+  border-radius: 14px;
+  background: #fffbea;
+}
+
+.admin-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-badge {
+  padding: 4px 10px;
+  border-radius: 30px;
+  background: #1b1306;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.14em;
+  color: #e3c27d;
+}
+
+.admin-note {
+  margin: 8px 0 14px;
+  font-size: 13px;
+  color: #66521b;
+}
+
+/* ---------- Form ---------- */
+.admin-panel label {
+  display: block;
+  margin: 12px 0 6px;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #66521b;
+}
+
+.admin-panel input {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid #e6d9a8;
+  border-radius: 9px;
+  background: #fff;
+  font-size: 16px;
+  color: #172b20;
+}
+
+.admin-panel input:focus {
+  outline: 2px solid #c49a52;
+  border-color: transparent;
+}
+
+.admin-panel small {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #7a6a30;
+}
+
+.admin-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.admin-panel hr {
+  margin: 18px 0;
+  border: 0;
+  border-top: 1px solid #e6d9a8;
+}
+
+/* ---------- Buttons ---------- */
+.admin-btn {
+  padding: 10px 14px;
+  border: 1px solid #c49a52;
+  border-radius: 8px;
+  background: #fff;
+  font: bold 13px Arial, sans-serif;
+  color: #1b1306;
+  cursor: pointer;
+}
+
+.admin-btn:hover {
+  background: #fff3c9;
+}
+
+.admin-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.admin-btn-main {
+  border-color: transparent;
+  background: linear-gradient(135deg, #f0d598, #c49a52);
+}
+
+.admin-btn-danger {
+  border-color: #e3a29d;
+  color: #a02820;
+}
+
+.admin-btn-danger:hover {
+  background: #fdeceb;
+}
+
+/* ---------- Edit / Delete buttons on each card ---------- */
+.admin-card-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed #e6d9a8;
+}
+
+/* ---------- Messages ---------- */
+.admin-message {
+  margin-top: 14px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.admin-message.ok    { background: #e6f6ec; color: #11623a; }
+.admin-message.error { background: #fdeceb; color: #a02820; }
+.admin-message.info  { background: #eef3f0; color: #475650; }
+
+.admin-panel [hidden] {
+  display: none !important;
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 600px) {
+  .admin-row {
+    grid-template-columns: 1fr;
+  }
+}

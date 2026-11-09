@@ -11,11 +11,12 @@
 			rel="stylesheet"
 		/>
 		<link rel="stylesheet" href="style.css" />
-		
-    <link rel="manifest" href="manifest.webmanifest" />
-    <meta name="theme-color" content="#06130c" />
-    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-    <script src="app.js" defer></script>
+		<link rel="stylesheet" href="home.css" />
+		<link rel="manifest" href="manifest.webmanifest" />
+		<meta name="theme-color" content="#06130c" />
+		<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+		<script src="app.js" defer></script>
+		<script src="carousel.js" defer></script>
 	</head>
 
 	<body>
@@ -49,63 +50,120 @@
 
 		<!-- ===== PAGE CONTENT ===== -->
 		<main>
-			<section class="hero">
-				<!-- Left: card with the badge faded behind the text -->
-				<div class="hero-card">
-					<img
-						class="hero-badge"
-						src="crest-emblem.png"
-						alt="Ghana Muslim Mission SHS, Beposo badge"
-					/>
+			<!-- ===== PHOTO CAROUSEL =====
+			     Put your photos in the main folder named slide-1.jpg, slide-2.jpg,
+			     slide-3.jpg and slide-4.jpg. Until then, a placeholder shows. -->
+			<section class="carousel" aria-roledescription="carousel" aria-label="School photos">
+				<div class="carousel-viewport">
+					<div class="carousel-track">
 
-					<div class="hero-card-top">
-						<span class="eyebrow">Ghana Muslim Mission SHS</span>
-						<span class="chip"><i></i>Knowledge &amp; Humility</span>
+						<figure class="slide" aria-roledescription="slide" aria-label="1 of 4">
+							<div class="slide-photo">
+								<span class="slide-placeholder">
+									Photo 1
+									<small>Upload your photo as slide-1.jpg</small>
+								</span>
+								<img src="a.jpeg" alt="Photo of the school" onerror="this.remove()" />
+							</div>
+							<figcaption class="slide-caption">
+								<h2>Welcome to GHAMMISH</h2>
+								<p>Ghana Muslim Mission Senior High School. Knowledge and Humility.</p>
+								<a class="slide-link" href="about.html">About our school &rarr;</a>
+							</figcaption>
+						</figure>
+
+						<figure class="slide" aria-roledescription="slide" aria-label="2 of 4">
+							<div class="slide-photo">
+								<span class="slide-placeholder">
+									Photo 2
+									<small>Upload your photo as slide-2.jpg</small>
+								</span>
+								<img src="c.jpeg" alt="Students learning in class" onerror="this.remove()" />
+							</div>
+							<figcaption class="slide-caption">
+								<h2>Learning Materials</h2>
+								<p>Notes and study materials for every subject.</p>
+								<a class="slide-link" href="resources.html">Open learning materials &rarr;</a>
+							</figcaption>
+						</figure>
+
+						<figure class="slide" aria-roledescription="slide" aria-label="3 of 4">
+							<div class="slide-photo">
+								<span class="slide-placeholder">
+									Photo 3
+									<small>Upload your photo as slide-3.jpg</small>
+								</span>
+								<img src="b.jpeg" alt="Students watching a lesson" onerror="this.remove()" />
+							</div>
+							<figcaption class="slide-caption">
+								<h2>Educational Videos</h2>
+								<p>Watch lessons selected for GHAMMISH students.</p>
+								<a class="slide-link" href="videos.html">Watch lessons &rarr;</a>
+							</figcaption>
+						</figure>
+
+						<figure class="slide" aria-roledescription="slide" aria-label="4 of 4">
+							<div class="slide-photo">
+								<span class="slide-placeholder">
+									Photo 4
+									<small>Upload your photo as slide-4.jpg</small>
+								</span>
+								<img src="nsmq.jpeg" alt="School life at GHAMMISH" onerror="this.remove()" />
+							</div>
+							<figcaption class="slide-caption">
+								<h2>School Life</h2>
+								<p>Events, achievements and moments from around the school.</p>
+								<a class="slide-link" href="#events">See school events &rarr;</a>
+							</figcaption>
+						</figure>
+
 					</div>
 
-					<div class="hero-copy">
-						<p class="kicker">Learning Resource Centre &middot; 2026</p>
-						<h1>Welcome to <em>GHAMMISH.</em></h1>
-						<p class="lead">
-							Your online school hub for learning resources, educational videos,
-							school news and information.
-						</p>
-
-						<div class="hero-actions">
-							<a class="btn btn-gold" href="resources.html"
-								>Explore learning resources &rarr;</a
-							>
-							<a class="btn btn-ghost" href="videos.html">Watch lessons</a>
-						</div>
-					</div>
-
-					<ul class="hero-points">
-						<li><b>09</b><span>Study notes</span></li>
-						<li><b>07</b><span>Video lessons</span></li>
-						<li><b>05</b><span>School info</span></li>
-					</ul>
+					<button class="carousel-btn carousel-prev" type="button" aria-label="Previous photo">&#8249;</button>
+					<button class="carousel-btn carousel-next" type="button" aria-label="Next photo">&#8250;</button>
 				</div>
 
-				<!-- Right: school photos (stored in the folder) -->
-				<div class="hero-gallery">
-					<figure class="g-a">
-						<img
-							src="photo-2.jpeg"
-							alt="Students of Ghana Muslim Mission SHS posing together on campus"
-						/>
-					</figure>
-					<figure class="g-b">
-						<img
-							src="photo-1.jpeg"
-							alt="GHAMMISH students holding a High School Debate banner"
-						/>
-					</figure>
-					<figure class="g-c">
-						<img
-							src="photo-3.jpeg"
-							alt="GHAMMISH students attending a regional quiz event"
-						/>
-					</figure>
+				<div class="carousel-bar">
+					<div class="carousel-dots"></div>
+					<span class="carousel-counter">1 / 4</span>
+					<button class="carousel-pause" type="button">&#10074;&#10074; Pause</button>
+				</div>
+			</section>
+
+			<!-- ===== WELCOME ===== -->
+			<section class="welcome-band">
+				<div class="wrap">
+					<p class="welcome-note" id="welcome-note" hidden></p>
+
+					<h1>Welcome to GHAMMISH</h1>
+					<p class="band-text">
+						Your online school hub for learning resources, educational
+						videos, school news and information.
+					</p>
+
+					<div class="band-actions">
+						<a class="btn btn-school" href="resources.html">Explore learning resources &rarr;</a>
+						<a class="btn btn-outline-school" href="videos.html">Watch lessons</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- ===== SCHOOL EVENTS (managed by the admin on this page) ===== -->
+			<section class="section wrap" id="events">
+				<div class="section-title">
+					<h2>School Events</h2>
+					<p>Upcoming activities and recent highlights.</p>
+				</div>
+
+				<div class="grid" id="events-grid">
+					<!-- Shown until the first event is added -->
+					<article class="card event-card">
+						<div class="event-date"><b>--</b><span>SOON</span></div>
+						<div class="card-body">
+							<h3>No events yet</h3>
+							<p>School events will appear here. Please check back soon.</p>
+						</div>
+					</article>
 				</div>
 			</section>
 

@@ -1,0 +1,231 @@
+/* =====================================================================
+   GHAMMISH sign-in styles
+   1. Menu items (Sign in / name / Sign out)
+   2. Sign-in page card and forms
+   ===================================================================== */
+
+
+/* ---------- 1. Menu items ---------- */
+.nav-auth {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 14px;
+  border-radius: 7px;
+  font: bold 15px Arial, sans-serif;
+}
+
+.nav-signin {
+  background: linear-gradient(135deg, #f0d598, #c49a52);
+  color: #1b1306 !important;
+}
+
+.nav-signin:hover {
+  filter: brightness(1.07);
+  background: linear-gradient(135deg, #f0d598, #c49a52) !important;
+}
+
+.nav-signup {
+  border: 1px solid rgba(227, 194, 125, 0.5);
+  color: #e3c27d !important;
+}
+
+.nav-signup:hover {
+  background: rgba(227, 194, 125, 0.14) !important;
+}
+
+.nav-user {
+  color: #f4eddc;
+}
+
+.nav-signout {
+  border: 1px solid rgba(227, 194, 125, 0.5);
+  background: transparent;
+  color: #e3c27d;
+  cursor: pointer;
+}
+
+.nav-signout:hover {
+  background: rgba(227, 194, 125, 0.14);
+}
+
+
+/* Medium screens: tighten the menu so "Name + Sign out" fits on one line */
+@media (min-width: 761px) and (max-width: 1240px) {
+  .nav {
+    gap: 2px;
+  }
+
+  .nav a,
+  .nav-auth {
+    padding: 8px 9px;
+    font-size: 14px;
+  }
+
+  /* not enough room for both buttons: Sign up is still on the Sign in page */
+  .nav-signup {
+    display: none;
+  }
+}
+
+
+/* ---------- 2. Sign-in page ---------- */
+.auth-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.auth-card {
+  width: min(440px, 100%);
+  padding: 26px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(16, 43, 25, 0.08);
+}
+
+.auth-card h2 {
+  margin-bottom: 4px;
+}
+
+.auth-card .muted {
+  margin-bottom: 18px;
+  font-size: 14px;
+}
+
+/* Tabs */
+.auth-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 18px;
+  padding: 4px;
+  border-radius: 10px;
+  background: var(--green-soft);
+}
+
+.auth-tabs button {
+  flex: 1;
+  padding: 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font: bold 14px Arial, sans-serif;
+  color: var(--green-dark);
+  cursor: pointer;
+}
+
+.auth-tabs button.active {
+  background: var(--green);
+  color: #fff;
+}
+
+/* Form fields */
+.auth-card label {
+  display: block;
+  margin: 14px 0 6px;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #f9fbfa;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.auth-card input:focus {
+  outline: 2px solid var(--green);
+  border-color: transparent;
+}
+
+/* Buttons */
+.auth-btn {
+  display: block;
+  width: 100%;
+  margin-top: 18px;
+  padding: 13px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--green);
+  font: bold 15px Arial, sans-serif;
+  color: #fff;
+  cursor: pointer;
+}
+
+.auth-btn:hover {
+  background: var(--green-dark);
+}
+
+.auth-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-btn-light {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+}
+
+.auth-btn-light:hover {
+  background: var(--green-soft);
+}
+
+.auth-link {
+  display: block;
+  margin: 14px auto 0;
+  border: 0;
+  background: none;
+  font-size: 13px;
+  color: var(--green);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.auth-switch {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.auth-switch a {
+  font-weight: bold;
+  color: var(--green);
+}
+
+.auth-divider {
+  margin: 18px 0 0;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Messages */
+.auth-message {
+  margin-top: 16px;
+  padding: 11px 13px;
+  border-radius: 9px;
+  font-size: 14px;
+}
+
+.auth-message.ok    { background: #e6f6ec; color: #11623a; }
+.auth-message.error { background: #fdeceb; color: #a02820; }
+.auth-message.info  { background: #eef3f0; color: #475650; }
+
+.auth-note {
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+[hidden] {
+  display: none !important;
+}

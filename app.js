@@ -1,8 +1,21 @@
 /* =====================================================================
    GHAMMISH app - turns the website into an installable app
+   0. Loads sign-in (auth.js), the visitor greeting (welcome.js) and the
+      PDF / video / events manager (content.js)
    1. Registers the service worker (offline support)
    2. Shows an "Install app" button on browsers that support it
    ===================================================================== */
+
+/* ---------- 0. Sign-in (see auth.js) ---------- */
+// Loaded safely: if sign-in is not set up, the rest of the site still works
+import("./auth.js")
+  .catch(() => {})
+  .then(() => import("./welcome.js"))        // greets new and returning visitors
+  .catch(() => {});
+
+/* ---------- 0b. Admin-managed PDFs, videos and events (see content.js) ---------- */
+import("./content.js").catch(() => {});
+
 
 /* ---------- 1. Offline support ---------- */
 if ("serviceWorker" in navigator) {

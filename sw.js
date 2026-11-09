@@ -16,7 +16,7 @@ const START_FILES = [
   "about.html",
   "style.css",
   "manifest.webmanifest",
-  "icon-192.png"
+  "icons/icon-192.png"
 ];
 
 
