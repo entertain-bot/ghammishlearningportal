@@ -9,7 +9,11 @@
 	    <link rel="manifest" href="manifest.webmanifest" />
     <meta name="theme-color" content="#06130c" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="enhance.css" />
+		<script>try{var t=localStorage.getItem("ghammish-theme");if(t==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+		<script src="site-settings.js"></script>
+		<script src="enhance.js" defer></script>
+		<script src="app.js" defer></script>
 </head>
 
 <body>
@@ -73,6 +77,15 @@
 									  <p>Location:Ashanti-Beposo</p>
                 </div>
 
+            </div>
+        </section>
+
+        <section class="section wrap" id="contact-section">
+            <div class="card contact-card">
+                <h2>Get in Touch</h2>
+                <p class="muted">We would love to hear from you. Reach the school using any of the options below.</p>
+                <div class="contact-actions"></div>
+                <div class="contact-details"></div>
             </div>
         </section>
     </main>
