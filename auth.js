@@ -25,8 +25,22 @@ const isSetUp = Boolean(
 window.ghammishAuthPending = isSetUp;   // lets welcome.js know to wait for us
 loadStyles();
 
+// Repairs a broken authDomain (e.g. "://firebaseapp.com") automatically
+const goodConfig = { ...firebaseConfig };
+if (!/^[a-z0-9-]+(\.[a-z0-9-]+)+$/i.test(String(goodConfig.authDomain || "")) && goodConfig.projectId) {
+  goodConfig.authDomain = goodConfig.projectId + ".firebaseapp.com";
+}
+
+let ready = null;   // resolves to { fb, auth } once Firebase has loaded
+
 if (isSetUp) {
-  startFirebase().catch((error) => console.error("Sign-in could not start:", error));
+  // Buttons are wired IMMEDIATELY, so the page never falls back to a plain reload
+  wireForms();
+  ready = startFirebase();
+  ready.catch((error) => {
+    console.error("Sign-in could not start:", error);
+    showMessage("Sign-in could not load (" + (error.code || error.message) + "). Check your internet and refresh the page.", "error");
+  });
 } else {
   showNotSetUp();
 }
@@ -37,7 +51,7 @@ async function startFirebase() {
   const { initializeApp, getApps, getApp } = await import(`${FIREBASE_URL}/firebase-app.js`);
   const fb = await import(`${FIREBASE_URL}/firebase-auth.js`);
 
-  const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+  const app = getApps().length ? getApp() : initializeApp(goodConfig);
   const auth = fb.getAuth(app);
 
   // Runs now, and again every time someone signs in or out
@@ -47,7 +61,20 @@ async function startFirebase() {
     renderSignedInPanel(user);
   });
 
-  wirePage(fb, auth);
+  // Coming back from a Google redirect sign-in (used if the pop-up is blocked)
+  fb.getRedirectResult(auth)
+    .then((result) => { if (result && result.user) goHome("Welcome!"); })
+    .catch((error) => showMessage(friendlyError(error), "error"));
+
+  return { fb, auth };
+}
+
+// Waits for Firebase (max 20 seconds) so a click never does nothing
+function getReady() {
+  const timeout = new Promise((_, reject) =>
+    setTimeout(() => reject({ code: "auth/network-request-failed" }), 20000)
+  );
+  return Promise.race([ready, timeout]);
 }
 
 // Lets other scripts (welcome.js) know who is signed in
@@ -112,9 +139,8 @@ function renderSignedInPanel(user) {
 
 
 /* ---------- Buttons and forms (only the ones on the current page) ---------- */
-function wirePage(fb, auth) {
-  const card = document.getElementById("auth-card");
-  if (!card) return;
+function wireForms() {
+  if (!document.getElementById("auth-card")) return;
 
   // Sign in with email + password (login.html)
   on("form-signin", "submit", (event) => {
@@ -122,7 +148,7 @@ function wirePage(fb, auth) {
     const email = value("signin-email");
     const password = document.getElementById("signin-password").value;
 
-    run(() => fb.signInWithEmailAndPassword(auth, email, password), "Welcome back!");
+    run(({ fb, auth }) => fb.signInWithEmailAndPassword(auth, email, password), "Welcome back!");
   });
 
   // Create a new account (signup.html)
@@ -137,7 +163,7 @@ function wirePage(fb, auth) {
       return showMessage("The two passwords do not match. Please type them again.", "error");
     }
 
-    run(async () => {
+    run(async ({ fb, auth }) => {
       const result = await fb.createUserWithEmailAndPassword(auth, email, password);
       await fb.updateProfile(result.user, { displayName: name });
       announceUser(auth.currentUser);                    // show the full name straight away
@@ -147,7 +173,20 @@ function wirePage(fb, auth) {
 
   // Continue with Google (both pages)
   on("btn-google", "click", () => {
-    run(() => fb.signInWithPopup(auth, new fb.GoogleAuthProvider()), "Welcome!");
+    run(async ({ fb, auth }) => {
+      const provider = new fb.GoogleAuthProvider();
+      provider.setCustomParameters({ prompt: "select_account" });
+      try {
+        await fb.signInWithPopup(auth, provider);
+      } catch (error) {
+        // Pop-up blocked or not supported (some phones / in-app browsers): use full-page sign-in
+        if (error.code === "auth/popup-blocked" || error.code === "auth/operation-not-supported-in-this-environment") {
+          await fb.signInWithRedirect(auth, provider);
+          return new Promise(() => {});   // the page is about to leave
+        }
+        throw error;
+      }
+    }, "Welcome!");
   });
 
   // Forgot password (login.html)
@@ -157,6 +196,7 @@ function wirePage(fb, auth) {
       return showMessage("Type your email in the box above first, then tap Forgot password.", "error");
     }
     try {
+      const { fb, auth } = await getReady();
       await fb.sendPasswordResetEmail(auth, email);
       showMessage("Password reset email sent. Check your inbox (and spam folder).", "ok");
     } catch (error) {
@@ -165,7 +205,19 @@ function wirePage(fb, auth) {
   });
 
   // Sign out (on the "you are signed in" panel)
-  on("btn-signout", "click", () => fb.signOut(auth));
+  on("btn-signout", "click", async () => {
+    try {
+      const { fb, auth } = await getReady();
+      await fb.signOut(auth);
+    } catch (error) {
+      showMessage(friendlyError(error), "error");
+    }
+  });
+}
+
+function goHome(text) {
+  showMessage(text, "ok");
+  setTimeout(() => (window.location.href = HOME_PAGE), 900);
 }
 
 // Runs an action, shows the result, and goes to the home page on success
@@ -175,10 +227,11 @@ async function run(action, successText) {
   showMessage("Please wait...", "info");
 
   try {
-    await action();
-    showMessage(successText, "ok");
-    setTimeout(() => (window.location.href = HOME_PAGE), 900);
+    const tools = await getReady();
+    await action(tools);
+    goHome(successText);
   } catch (error) {
+    console.error("Sign-in error:", error);
     showMessage(friendlyError(error), "error");
     buttons.forEach((button) => (button.disabled = false));
   }
@@ -227,9 +280,12 @@ function friendlyError(error) {
     "auth/cancelled-popup-request":   "Google sign-in was cancelled.",
     "auth/popup-blocked":             "Your browser blocked the Google window. Allow pop-ups and try again.",
     "auth/operation-not-allowed":     "This sign-in method is not turned on yet in Firebase.",
-    "auth/unauthorized-domain":       "This website address is not allowed yet in Firebase (Authorized domains)."
+    "auth/unauthorized-domain":       "This website address is not allowed yet in Firebase (Authorized domains).",
+    "auth/user-disabled":             "This account has been disabled.",
+    "auth/invalid-api-key":           "The Firebase API key is wrong. Check firebase-config.js.",
+    "auth/invalid-auth-domain":       "The authDomain in firebase-config.js is wrong."
   };
-  return messages[error.code] || "Something went wrong. Please try again.";
+  return messages[error.code] || ("Something went wrong" + (error.code ? " (" + error.code + ")" : "") + ". Please try again.");
 }
 
 function showNotSetUp() {

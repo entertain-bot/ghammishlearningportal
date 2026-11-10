@@ -1,6 +1,6 @@
 export const firebaseConfig = {
   apiKey: "AIzaSyARaT00-8V1fhs18SZc7ds6t1EA1ANKzXw",
-  authDomain: "://firebaseapp.com",
+  authDomain: "ghammish-learning-portal.firebaseapp.com",
   projectId: "ghammish-learning-portal",
   storageBucket: "ghammish-learning-portal.firebasestorage.app",
   messagingSenderId: "583644196246",

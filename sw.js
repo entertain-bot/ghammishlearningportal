@@ -5,7 +5,7 @@
    (If you ever need to force everyone to refresh, change CACHE_NAME.)
    ===================================================================== */
 
-const CACHE_NAME = "ghammish-v1";
+const CACHE_NAME = "ghammish-v2";
 
 // Pages and files saved when the app is first opened
 const START_FILES = [
@@ -16,7 +16,7 @@ const START_FILES = [
   "about.html",
   "style.css",
   "manifest.webmanifest",
-  "icons/icon-192.png"
+  "icon-192.png"
 ];
 
 
