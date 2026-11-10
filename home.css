@@ -7,295 +7,288 @@
    ===================================================================== */
 
 :root {
-  --school-green: #0b5d34;
-  --school-green-dark: #084a2a;
-  --school-gold: #c49a52;
+	--school-green: #0b5d34;
+	--school-green-dark: #084a2a;
+	--school-gold: #c49a52;
 }
-
 
 /* ---------- 1. Photo carousel ---------- */
 .carousel {
-  background: #fff;
-  border-bottom: 1px solid var(--border);
+	background: #fff;
+	border-bottom: 1px solid var(--border);
 }
 
 .carousel-viewport {
-  position: relative;
-  overflow: hidden;
-  touch-action: pan-y;               /* lets phones scroll the page up/down */
+	position: relative;
+	overflow: hidden;
+	touch-action: pan-y; /* lets phones scroll the page up/down */
 }
 
 .carousel-track {
-  display: flex;
-  transition: transform 0.6s ease;
+	display: flex;
+	transition: transform 0.6s ease;
 }
 
 .slide {
-  position: relative;
-  flex: 0 0 100%;
-  margin: 0;
+	position: relative;
+	flex: 0 0 100%;
+	margin: 0;
 }
 
-/* The photo area */
+/* The photo area: the WHOLE photo is shown (never cropped). A blurred
+   copy of the same photo fills any empty space behind it. */
 .slide-photo {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 6;
-  max-height: 480px;
-  background: #dfe8e2;
+	position: relative;
+	width: 100%;
+	height: 480px;
+	overflow: hidden;
+	background: #1c2a22;
+	--cap: clamp(240px, 26vw, 340px); /* width of the caption panel */
+}
+
+.slide-photo::before {
+	content: "";
+	position: absolute;
+	inset: -30px;
+	background: var(--bg) center / cover no-repeat;
+	filter: blur(22px) brightness(0.8) saturate(1.1);
 }
 
 .slide-photo img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+	position: absolute;
+	inset: 0 0 0 var(--cap);
+	width: calc(100% - var(--cap));
+	height: 100%;
+	object-fit: contain;
+	image-rendering: auto;
 }
 
-/* Shown until you upload the real photo */
-.slide-placeholder {
-  position: absolute;
-  inset: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  border: 2px dashed #a9bcb0;
-  text-align: center;
-  font-size: 22px;
-  font-weight: bold;
-  color: #5d7266;
-}
-
-.slide-placeholder small {
-  font-size: 13px;
-  font-weight: normal;
-}
-
-/* Caption: a plain green panel in the corner */
+/* Caption: a plain green panel at the bottom-left, beside the photo */
 .slide-caption {
-  position: absolute;
-  left: 5%;
-  bottom: 0;
-  max-width: 520px;
-  padding: 20px 26px 22px;
-  background: var(--school-green);
-  border-top: 4px solid var(--school-gold);
-  color: #fff;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: clamp(240px, 26vw, 340px);
+	padding: 20px 26px 22px;
+	background: var(--school-green);
+	border-top: 4px solid var(--school-gold);
+	color: #fff;
 }
 
 .slide-caption h2 {
-  margin-bottom: 6px;
-  font-size: 26px;
+	margin-bottom: 6px;
+	font-size: 26px;
 }
 
 .slide-caption p {
-  margin-bottom: 12px;
-  font-size: 15px;
-  line-height: 1.5;
-  color: #e3efe7;
+	margin-bottom: 12px;
+	font-size: 15px;
+	line-height: 1.5;
+	color: #e3efe7;
 }
 
 .slide-link {
-  font-weight: bold;
-  color: #fff;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+	font-weight: bold;
+	color: #fff;
+	text-decoration: underline;
+	text-underline-offset: 3px;
 }
 
 /* Previous / next arrows */
 .carousel-btn {
-  position: absolute;
-  top: 50%;
-  z-index: 3;
-  width: 46px;
-  height: 46px;
-  transform: translateY(-50%);
-  border: 0;
-  background: rgba(255, 255, 255, 0.92);
-  font-size: 28px;
-  line-height: 1;
-  color: var(--school-green);
-  cursor: pointer;
+	position: absolute;
+	top: 50%;
+	z-index: 3;
+	width: 46px;
+	height: 46px;
+	transform: translateY(-50%);
+	border: 0;
+	background: rgba(255, 255, 255, 0.92);
+	font-size: 28px;
+	line-height: 1;
+	color: var(--school-green);
+	cursor: pointer;
 }
 
 .carousel-btn:hover {
-  background: var(--school-green);
-  color: #fff;
+	background: var(--school-green);
+	color: #fff;
 }
 
-.carousel-prev { left: 0; }
-.carousel-next { right: 0; }
+.carousel-prev {
+	left: 0;
+}
+.carousel-next {
+	right: 0;
+}
 
 /* Bar under the photos: dots, counter, pause */
 .carousel-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  padding: 12px 5%;
-  background: #fff;
-  font-size: 13px;
-  color: var(--muted);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	padding: 12px 5%;
+	background: #fff;
+	font-size: 13px;
+	color: var(--muted);
 }
 
 .carousel-dots {
-  display: flex;
-  gap: 8px;
+	display: flex;
+	gap: 8px;
 }
 
 .carousel-dots button {
-  width: 11px;
-  height: 11px;
-  padding: 0;
-  border: 2px solid var(--school-green);
-  border-radius: 50%;
-  background: #fff;
-  cursor: pointer;
+	width: 11px;
+	height: 11px;
+	padding: 0;
+	border: 2px solid var(--school-green);
+	border-radius: 50%;
+	background: #fff;
+	cursor: pointer;
 }
 
 .carousel-dots button.active {
-  background: var(--school-green);
+	background: var(--school-green);
 }
 
 .carousel-pause {
-  padding: 5px 10px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: #fff;
-  font-size: 12px;
-  color: var(--text);
-  cursor: pointer;
+	padding: 5px 10px;
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	background: #fff;
+	font-size: 12px;
+	color: var(--text);
+	cursor: pointer;
 }
-
 
 /* ---------- 2. Welcome band ---------- */
 .welcome-band {
-  padding: 34px 0 38px;
-  background: #fff;
-  border-bottom: 1px solid var(--border);
+	padding: 34px 0 38px;
+	background: #fff;
+	border-bottom: 1px solid var(--border);
 }
 
 .welcome-note {
-  margin-bottom: 18px;
-  padding: 10px 14px;
-  border-left: 4px solid var(--school-green);
-  background: #eef6f1;
-  font-size: 14px;
-  color: #264a36;
+	margin-bottom: 18px;
+	padding: 10px 14px;
+	border-left: 4px solid var(--school-green);
+	background: #eef6f1;
+	font-size: 14px;
+	color: #264a36;
 }
 
 .welcome-note a {
-  font-weight: bold;
-  color: var(--school-green);
+	font-weight: bold;
+	color: var(--school-green);
 }
 
 .welcome-band h1 {
-  margin-bottom: 10px;
-  font-size: clamp(30px, 4vw, 42px);
-  color: #0b3d24;
+	margin-bottom: 10px;
+	font-size: clamp(30px, 4vw, 42px);
+	color: #0b3d24;
 }
 
 .band-text {
-  max-width: 620px;
-  margin-bottom: 22px;
-  font-size: 17px;
-  color: var(--muted);
+	max-width: 620px;
+	margin-bottom: 22px;
+	font-size: 17px;
+	color: var(--muted);
 }
 
 .band-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
 }
 
 .btn-school {
-  background: var(--school-green);
-  color: #fff;
+	background: var(--school-green);
+	color: #fff;
 }
 
 .btn-school:hover {
-  background: var(--school-green-dark);
+	background: var(--school-green-dark);
 }
 
 .btn-outline-school {
-  border: 2px solid var(--school-green);
-  background: #fff;
-  color: var(--school-green);
+	border: 2px solid var(--school-green);
+	background: #fff;
+	color: var(--school-green);
 }
 
 .btn-outline-school:hover {
-  background: var(--green-soft);
+	background: var(--green-soft);
 }
-
 
 /* ---------- 3. School events ---------- */
 .event-card {
-  display: flex;
+	display: flex;
 }
 
 .event-date {
-  flex: 0 0 78px;
-  padding: 16px 6px;
-  background: var(--school-green);
-  text-align: center;
-  color: #fff;
+	flex: 0 0 78px;
+	padding: 16px 6px;
+	background: var(--school-green);
+	text-align: center;
+	color: #fff;
 }
 
 .event-date b {
-  display: block;
-  font-size: 30px;
-  line-height: 1;
+	display: block;
+	font-size: 30px;
+	line-height: 1;
 }
 
 .event-date span {
-  font-size: 12px;
-  letter-spacing: 0.1em;
+	font-size: 12px;
+	letter-spacing: 0.1em;
 }
 
 .event-card .card-body {
-  flex: 1;
+	flex: 1;
 }
 
 .event-meta {
-  margin-bottom: 6px;
-  font-size: 13px;
-  font-weight: bold;
-  color: #475650;
+	margin-bottom: 6px;
+	font-size: 13px;
+	font-weight: bold;
+	color: #475650;
 }
 
 .event-past {
-  opacity: 0.72;
+	opacity: 0.72;
 }
 
 .event-past .event-date {
-  background: #6c7f74;
+	background: #6c7f74;
 }
-
 
 /* ---------- Phones ---------- */
 @media (max-width: 760px) {
-  .slide-photo {
-    aspect-ratio: 4 / 3;
-  }
+	.slide-photo {
+		height: auto;
+		aspect-ratio: 4 / 3;
+		--cap: 0px;
+	}
 
-  /* caption sits under the photo instead of on top of it */
-  .slide-caption {
-    position: static;
-    max-width: none;
-    padding: 16px 18px 18px;
-  }
+	/* caption sits under the photo instead of on top of it */
+	.slide-caption {
+		position: static;
+		width: auto;
+		max-width: none;
+		padding: 16px 18px 18px;
+	}
 
-  .slide-caption h2 {
-    font-size: 21px;
-  }
+	.slide-caption h2 {
+		font-size: 21px;
+	}
 
-  .carousel-btn {
-    top: 28%;
-    width: 38px;
-    height: 38px;
-    font-size: 24px;
-  }
+	.carousel-btn {
+		top: 28%;
+		width: 38px;
+		height: 38px;
+		font-size: 24px;
+	}
 }

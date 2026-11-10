@@ -23,10 +23,7 @@
 		<!-- ===== HEADER / NAVIGATION ===== -->
 		<header class="site-header">
 			<a class="brand" href="index.html">
-				<img
-					src="school-logo.jpg"
-					alt="Ghana Muslim Mission SHS crest"
-				/>
+				<img src="school-logo.jpg" alt="Ghana Muslim Mission SHS crest" />
 				<span>
 					<strong>GHAMMISH</strong>
 					<small>LEARNING RESOURCE CENTRE</small>
@@ -50,83 +47,124 @@
 
 		<!-- ===== PAGE CONTENT ===== -->
 		<main>
-			<!-- ===== PHOTO CAROUSEL =====
-			     Put your photos in the main folder named slide-1.jpg, slide-2.jpg,
-			     slide-3.jpg and slide-4.jpg. Until then, a placeholder shows. -->
-			<section class="carousel" aria-roledescription="carousel" aria-label="School photos">
+			<!-- Slide photos: a.jpeg, c.jpeg, b.jpeg, nsmq.jpeg (full photo is shown, never cropped). Replace the files to change them. -->
+			<section
+				class="carousel"
+				aria-roledescription="carousel"
+				aria-label="School photos"
+			>
 				<div class="carousel-viewport">
 					<div class="carousel-track">
-
-						<figure class="slide" aria-roledescription="slide" aria-label="1 of 4">
-							<div class="slide-photo">
-								<span class="slide-placeholder">
-									Photo 1
-									<small>Upload your photo as slide-1.jpg</small>
-								</span>
-								<img src="a.jpeg" alt="Photo of the school" onerror="this.remove()" />
+						<figure
+							class="slide"
+							aria-roledescription="slide"
+							aria-label="1 of 4"
+						>
+							<div class="slide-photo" style="--bg: url(&quot;a.jpeg&quot;)">
+								<img
+									src="a.jpeg"
+									alt="Photo of the school"
+									onerror="this.remove()"
+								/>
 							</div>
 							<figcaption class="slide-caption">
 								<h2>Welcome to GHAMMISH</h2>
-								<p>Ghana Muslim Mission Senior High School. Knowledge and Humility.</p>
-								<a class="slide-link" href="about.html">About our school &rarr;</a>
+								<p>
+									Ghana Muslim Mission Senior High School. Knowledge and
+									Humility.
+								</p>
+								<a class="slide-link" href="about.html"
+									>About our school &rarr;</a
+								>
 							</figcaption>
 						</figure>
 
-						<figure class="slide" aria-roledescription="slide" aria-label="2 of 4">
-							<div class="slide-photo">
-								<span class="slide-placeholder">
-									Photo 2
-									<small>Upload your photo as slide-2.jpg</small>
-								</span>
-								<img src="c.jpeg" alt="Students learning in class" onerror="this.remove()" />
+						<figure
+							class="slide"
+							aria-roledescription="slide"
+							aria-label="2 of 4"
+						>
+							<div class="slide-photo" style="--bg: url(&quot;c.jpeg&quot;)">
+								<img
+									src="c.jpeg"
+									alt="Students learning in class"
+									onerror="this.remove()"
+								/>
 							</div>
 							<figcaption class="slide-caption">
 								<h2>Learning Materials</h2>
 								<p>Notes and study materials for every subject.</p>
-								<a class="slide-link" href="resources.html">Open learning materials &rarr;</a>
+								<a class="slide-link" href="resources.html"
+									>Open learning materials &rarr;</a
+								>
 							</figcaption>
 						</figure>
 
-						<figure class="slide" aria-roledescription="slide" aria-label="3 of 4">
-							<div class="slide-photo">
-								<span class="slide-placeholder">
-									Photo 3
-									<small>Upload your photo as slide-3.jpg</small>
-								</span>
-								<img src="b.jpeg" alt="Students watching a lesson" onerror="this.remove()" />
+						<figure
+							class="slide"
+							aria-roledescription="slide"
+							aria-label="3 of 4"
+						>
+							<div class="slide-photo" style="--bg: url(&quot;b.jpeg&quot;)">
+								<img
+									src="b.jpeg"
+									alt="Students watching a lesson"
+									onerror="this.remove()"
+								/>
 							</div>
 							<figcaption class="slide-caption">
 								<h2>Educational Videos</h2>
 								<p>Watch lessons selected for GHAMMISH students.</p>
-								<a class="slide-link" href="videos.html">Watch lessons &rarr;</a>
+								<a class="slide-link" href="videos.html"
+									>Watch lessons &rarr;</a
+								>
 							</figcaption>
 						</figure>
 
-						<figure class="slide" aria-roledescription="slide" aria-label="4 of 4">
-							<div class="slide-photo">
-								<span class="slide-placeholder">
-									Photo 4
-									<small>Upload your photo as slide-4.jpg</small>
-								</span>
-								<img src="nsmq.jpeg" alt="School life at GHAMMISH" onerror="this.remove()" />
+						<figure
+							class="slide"
+							aria-roledescription="slide"
+							aria-label="4 of 4"
+						>
+							<div class="slide-photo" style="--bg: url(&quot;nsmq.jpeg&quot;)">
+								<img
+									src="nsmq.jpeg"
+									alt="School life at GHAMMISH"
+									onerror="this.remove()"
+								/>
 							</div>
 							<figcaption class="slide-caption">
 								<h2>School Life</h2>
 								<p>Events, achievements and moments from around the school.</p>
-								<a class="slide-link" href="#events">See school events &rarr;</a>
+								<a class="slide-link" href="#events"
+									>See school events &rarr;</a
+								>
 							</figcaption>
 						</figure>
-
 					</div>
 
-					<button class="carousel-btn carousel-prev" type="button" aria-label="Previous photo">&#8249;</button>
-					<button class="carousel-btn carousel-next" type="button" aria-label="Next photo">&#8250;</button>
+					<button
+						class="carousel-btn carousel-prev"
+						type="button"
+						aria-label="Previous photo"
+					>
+						&#8249;
+					</button>
+					<button
+						class="carousel-btn carousel-next"
+						type="button"
+						aria-label="Next photo"
+					>
+						&#8250;
+					</button>
 				</div>
 
 				<div class="carousel-bar">
 					<div class="carousel-dots"></div>
 					<span class="carousel-counter">1 / 4</span>
-					<button class="carousel-pause" type="button">&#10074;&#10074; Pause</button>
+					<button class="carousel-pause" type="button">
+						&#10074;&#10074; Pause
+					</button>
 				</div>
 			</section>
 
@@ -137,13 +175,17 @@
 
 					<h1>Welcome to GHAMMISH</h1>
 					<p class="band-text">
-						Your online school hub for learning resources, educational
-						videos, school news and information.
+						Your online school hub for learning resources, educational videos,
+						school news and information.
 					</p>
 
 					<div class="band-actions">
-						<a class="btn btn-school" href="resources.html">Explore learning resources &rarr;</a>
-						<a class="btn btn-outline-school" href="videos.html">Watch lessons</a>
+						<a class="btn btn-school" href="resources.html"
+							>Explore learning resources &rarr;</a
+						>
+						<a class="btn btn-outline-school" href="videos.html"
+							>Watch lessons</a
+						>
 					</div>
 				</div>
 			</section>
